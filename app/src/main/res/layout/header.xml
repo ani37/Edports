@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gr"
+    android:padding="20dp">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        tools:src="@mipmap/ic_launcher" />
+    <TextView
+        android:id="@+id/nam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aniket Agarwalla"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"/>
+    <TextView
+        android:id="@+id/emal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="aniketagarwalla37@gmail.com"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>
