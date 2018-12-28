@@ -31,13 +31,53 @@
 
     <TextView
         android:id="@+id/score"
-        android:textAllCaps="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text=" • Achievements Unlocked"
+        android:textAllCaps="true"
         android:textSize="18dp"
         android:textStyle="bold" />
+    <TextView
+        android:id="@+id/scoreb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text=" Brainbuzz"
+        android:textAllCaps="true"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/scorebe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text=" easy :"
+        android:textAllCaps="true"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/scorebm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text=" Medium :"
+        android:textAllCaps="true"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/scorebh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text=" Hard :"
+        android:textAllCaps="true"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+
+
 
 
 

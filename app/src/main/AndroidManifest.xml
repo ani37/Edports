@@ -24,7 +24,6 @@
         <activity android:name=".ARpuzz" />
         <activity android:name=".math" />
         <activity android:name=".Cal" />
-        <activity android:name=".BrainBuzz1" />
         <activity android:name=".math1" />
         <activity android:name=".math3" />
         <activity android:name=".dashboard"></activity>

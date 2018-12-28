@@ -53,7 +53,7 @@ public class HLVAdapter extends RecyclerView.Adapter<HLVAdapter.ViewHolder> {
                     }
                     else if(position==1)
                     {
-                        Toast.makeText(context, "Starting BrainBuzz(Add)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Starting BrainBuzz", Toast.LENGTH_SHORT).show();
                         context.startActivity(new Intent(context, BrainBuzz.class));
                     }
                     else if(position==4)
@@ -66,11 +66,7 @@ public class HLVAdapter extends RecyclerView.Adapter<HLVAdapter.ViewHolder> {
                         Toast.makeText(context, "Starting Scientific Calculator", Toast.LENGTH_SHORT).show();
                         context.startActivity(new Intent(context, Cal.class));
                     }
-                    else if(position==2)
-                    {
-                        Toast.makeText(context, "Starting BrainBuzz(Mult)", Toast.LENGTH_SHORT).show();
-                        context.startActivity(new Intent(context, BrainBuzz1.class));
-                    }
+
                 }
             }
         });
@@ -101,6 +97,7 @@ public class HLVAdapter extends RecyclerView.Adapter<HLVAdapter.ViewHolder> {
 
         @Override
         public void onClick(View view) {
+
             clickListener.onClick(view, getPosition(), false);
         }
 
