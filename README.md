@@ -1,9 +1,9 @@
 # project_e
 
-#FIREBASE- authentication,firestore
+FIREBASE- authentication,firestore
 
 
-#LOTTIE
+LOTTIE
 Main activity is removed_for privacy
 
 
