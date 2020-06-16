@@ -5,7 +5,7 @@
 Edports is a learning platform and user can login safely by Firebase google authentication.Here an user can practice and test his skills in mathematical calculation with the help of games. Its an interesting app to develop your calculation skills.
 
 You can download the app from the given link or follow the instructions to install it on your own system.
-- To download app -https://github.com/ani37/edports/blob/master/app/release/app-release.apk
+- To download app -https://github.com/ani37/project_e/blob/master/app/release/app-release.apk
 
 
 ## Features
