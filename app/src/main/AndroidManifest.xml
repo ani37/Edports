@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.aniketagarwalla.task1">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,8 +11,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Login">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".e" />
+        <activity android:name=".d" />
+        <activity android:name=".Login" />
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,13 +27,9 @@
         </activity>
         <activity android:name=".Main" />
         <activity android:name=".BrainBuzz" />
-        <activity android:name=".GuessNum" />
-        <activity android:name=".ARpuzz" />
-        <activity android:name=".math" />
         <activity android:name=".Cal" />
-        <activity android:name=".math1" />
-        <activity android:name=".math3" />
-        <activity android:name=".dashboard"></activity>
+        <activity android:name=".dashboard" />
+        <activity android:name=".PracticeBrainBuzz" />
     </application>
 
 </manifest>

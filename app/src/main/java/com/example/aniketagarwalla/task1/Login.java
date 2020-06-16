@@ -24,6 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.Objects;
+
 public class Login extends AppCompatActivity {
     private static final int RC_SIGN_IN = 1100;
     private static final String TAG = "GOOGLELOG";
@@ -68,7 +70,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        Objects.requireNonNull(getSupportActionBar()).hide();
         btnLogin = findViewById(R.id.btn_login);
         btnLogin.setVisibility(View.GONE);
 

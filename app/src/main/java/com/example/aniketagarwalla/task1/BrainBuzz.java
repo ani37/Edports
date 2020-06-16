@@ -33,12 +33,12 @@ import java.util.Random;
 
 public class BrainBuzz extends AppCompatActivity {
     private static final String TAG ="hello" ;
-    public static final String DIFFICULTY_EASY = "easy";
-    public static final String DIFFICULTY_MEDIUM = "medium";
-    public static final String DIFFICULTY_HARD = "hard";
+    public static final String DIFFICULTY_EASY = "45 Second";
+    public static final String DIFFICULTY_MEDIUM ="1 Minute";
+    public static final String DIFFICULTY_HARD =  "2 Minute";
     FirebaseAuth mAuth;
     FirebaseFirestore db;
-    String currentuser,difficulty;
+    String currentuser,difficulty,message;
     private Spinner spinnerDifficulty;
     Button button;
     TextView result,points,sum,timer;
@@ -56,100 +56,339 @@ public class BrainBuzz extends AppCompatActivity {
     public void generateQuestion()
     {
         Random rand =new Random();
-        int a=rand.nextInt(21);
-        int b=rand.nextInt(21);
-        int choice=rand.nextInt(3);
-        String str;
-        if(choice==0)
-        {
-            str = Integer.toString(a) + "+" + Integer.toString(b);
-            sum.setText(str);
-            locationOfCorrectAnswer = rand.nextInt(4);
-            int incorrectAnswer;
-            answers.clear();
-            for (int i = 0; i < 4; i++) {
-                if (i == locationOfCorrectAnswer) {
-                    answers.add(a + b);
-                } else {
-                    incorrectAnswer = rand.nextInt(41);
-                    while (incorrectAnswer == a + b) {
-                        incorrectAnswer = rand.nextInt(41);
+        switch (message) {
+            case "amateur": {
+
+                int a = rand.nextInt(22) +10;
+                int b = rand.nextInt(22) + 5;
+                int choice = rand.nextInt(4);
+                String str;
+                if (choice == 0) {
+                    str = Integer.toString(a) + " + " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++) {
+                        if (i == locationOfCorrectAnswer) {
+                            answers.add(a + b);
+                        } else {
+                            incorrectAnswer = rand.nextInt(41) + 5;
+                            while (incorrectAnswer == a + b) {
+                                incorrectAnswer = rand.nextInt(41) + 5;
+
+                            }
+                            answers.add(incorrectAnswer);
+                        }
+                    }
+                } else if (choice == 1) {
+                    str = Integer.toString(a) + " x " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++) {
+                        if (i == locationOfCorrectAnswer) {
+                            answers.add(a * b);
+                        } else if (i == 0) {
+                            incorrectAnswer = rand.nextInt(a * b + 20) + a * b - 10;
+                            while (incorrectAnswer == a * b) {
+                                incorrectAnswer = rand.nextInt(a * b + 20) + a * b - 10;
+
+                            }
+                            answers.add(incorrectAnswer);
+                        } else {
+                            incorrectAnswer = a * b + i * 10;
+                            answers.add(incorrectAnswer);
+                        }
 
                     }
-                    answers.add(incorrectAnswer);
                 }
-            }
-        }
-        else if(choice==1)
-        {
-            str=Integer.toString(a)+" x " + Integer.toString(b);
-            sum.setText(str);
-            locationOfCorrectAnswer=rand.nextInt(4);
-            int incorrectAnswer;
-            answers.clear();
-            for(int i=0;i<4;i++)
-            {
-                if(i==locationOfCorrectAnswer)
-                {
-                    answers.add(a*b);
+                else if (choice == 2) {
+                    a = rand.nextInt(41) + 10;
+                    b = rand.nextInt(41) + 10;
+                    if (a < b) {
+                        a = a + b;
+                        b = a - b;
+                        a = a - b;
+                    }
+                    str = Integer.toString(a) + " - " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++) {
+                        if (i == locationOfCorrectAnswer) {
+                            answers.add(a - b);
+                        } else {
+                            incorrectAnswer = rand.nextInt(41);
+                            while (incorrectAnswer == a - b) {
+                                incorrectAnswer = rand.nextInt(41);
+
+                            }
+                            answers.add(incorrectAnswer);
+                        }
+                    }
                 }
-                else if(i==0)
+                else if (choice == 3)
                 {
-                    incorrectAnswer=rand.nextInt(a*b +20) + a*b -10;
-                    while (incorrectAnswer==a*b)
+                    int x = a*b;
+
+
+                    str = Integer.toString(x) + " / " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++)
                     {
-                        incorrectAnswer=rand.nextInt(a*b +20) + a*b -10;
+                        if (i == locationOfCorrectAnswer)
+                        {
+                            answers.add(a);
+                        } else {
+                            incorrectAnswer = rand.nextInt(a + 11) + a - 3;
+                            while (incorrectAnswer == a) {
+                                incorrectAnswer = rand.nextInt(a + 11) + a - 3;
 
+                            }
+                            answers.add(incorrectAnswer);
+                        }
                     }
-                    answers.add(incorrectAnswer);
                 }
-                else
+                str = Integer.toString(answers.get(0));
+                button1.setText(str);
+                str = Integer.toString(answers.get(1));
+                button2.setText(str);
+                str = Integer.toString(answers.get(2));
+                button3.setText(str);
+                str = Integer.toString(answers.get(3));
+                button4.setText(str);
+
+
+                break;
+            }
+            case "expert": {
+
+                int a = rand.nextInt(31)+ 15;
+                int b = rand.nextInt(31)+10;
+                int choice = rand.nextInt(4);
+                String str;
+                if (choice == 0) {
+                    str = Integer.toString(a) + " + " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++) {
+                        if (i == locationOfCorrectAnswer) {
+                            answers.add(a + b);
+                        } else {
+                            incorrectAnswer = rand.nextInt(61) + 10;
+                            while (incorrectAnswer == a + b) {
+                                incorrectAnswer = rand.nextInt(61) + 10;
+
+                            }
+                            answers.add(incorrectAnswer);
+                        }
+                    }
+                } else if (choice == 1)
                 {
-                 incorrectAnswer = a*b +i*10;
-                    answers.add(incorrectAnswer);
-                }
+                    str = Integer.toString(a) + " x " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++) {
+                        if (i == locationOfCorrectAnswer) {
+                            answers.add(a * b);
+                        } else if (i == 0) {
+                            incorrectAnswer = rand.nextInt(a * b + 20) + a * b - 10;
+                            while (incorrectAnswer == a * b) {
+                                incorrectAnswer = rand.nextInt(a * b + 20) + a * b - 10;
 
-            }
-        }
-        if(choice==2)
-        {
-            a=rand.nextInt(41);
-            b=rand.nextInt(41);
-            if(a<b)
-            {
-                a=a+b;
-                b=a-b;
-                a=a-b;
-            }
-            str = Integer.toString(a) + "-" + Integer.toString(b);
-            sum.setText(str);
-            locationOfCorrectAnswer = rand.nextInt(4);
-            int incorrectAnswer;
-            answers.clear();
-            for (int i = 0; i < 4; i++) {
-                if (i == locationOfCorrectAnswer) {
-                    answers.add(a - b);
-                } else {
-                    incorrectAnswer = rand.nextInt(41);
-                    while (incorrectAnswer == a - b) {
-                        incorrectAnswer = rand.nextInt(41);
+                            }
+                            answers.add(incorrectAnswer);
+                        } else {
+                            incorrectAnswer = a * b + i * 10;
+                            answers.add(incorrectAnswer);
+                        }
 
                     }
-                    answers.add(incorrectAnswer);
                 }
+                else if (choice == 2) {
+                    a = rand.nextInt(61) +15;
+                    b = rand.nextInt(61) + 15;
+                    if (a < b) {
+                        a = a + b;
+                        b = a - b;
+                        a = a - b;
+                    }
+                    str = Integer.toString(a) + " - " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++) {
+                        if (i == locationOfCorrectAnswer) {
+                            answers.add(a - b);
+                        } else {
+                            incorrectAnswer = rand.nextInt(61);
+                            while (incorrectAnswer == a - b) {
+                                incorrectAnswer = rand.nextInt(61);
+
+                            }
+                            answers.add(incorrectAnswer);
+                        }
+                    }
+                }
+                else if (choice == 3)
+                {
+                    int x = a*b;
+
+
+                    str = Integer.toString(x) + " / " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (i == locationOfCorrectAnswer)
+                        {
+                            answers.add(a);
+                        } else {
+                            incorrectAnswer = rand.nextInt(a + 11) + a - 3;
+                            while (incorrectAnswer == a) {
+                                incorrectAnswer = rand.nextInt(a + 11) + a - 3;
+
+                            }
+                            answers.add(incorrectAnswer);
+                        }
+                    }
+                }
+                str = Integer.toString(answers.get(0));
+                button1.setText(str);
+                str = Integer.toString(answers.get(1));
+                button2.setText(str);
+                str = Integer.toString(answers.get(2));
+                button3.setText(str);
+                str = Integer.toString(answers.get(3));
+                button4.setText(str);
+
+
+                break;
+            }
+            default: {
+
+                int a = rand.nextInt(12);
+                int b = rand.nextInt(13)+1;
+                int choice = rand.nextInt(4);
+                String str;
+                if (choice == 0) {
+                    str = Integer.toString(a) + " + " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++) {
+                        if (i == locationOfCorrectAnswer) {
+                            answers.add(a + b);
+                        } else {
+                            incorrectAnswer = rand.nextInt(25);
+                            while (incorrectAnswer == a + b) {
+                                incorrectAnswer = rand.nextInt(25);
+
+                            }
+                            answers.add(incorrectAnswer);
+                        }
+                    }
+                } else if (choice == 1) {
+                    str = Integer.toString(a) + " x " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++) {
+                        if (i == locationOfCorrectAnswer) {
+                            answers.add(a * b);
+                        } else if (i == 0) {
+                            incorrectAnswer = rand.nextInt(a * b + 20) + a * b - 10;
+                            while (incorrectAnswer == a * b) {
+                                incorrectAnswer = rand.nextInt(a * b + 20) + a * b - 10;
+
+                            }
+                            answers.add(incorrectAnswer);
+                        } else {
+                            incorrectAnswer = a * b + i * 10;
+                            answers.add(incorrectAnswer);
+                        }
+
+                    }
+                }
+                else if (choice == 2) {
+                    a = rand.nextInt(21);
+                    b = rand.nextInt(21);
+                    if (a < b) {
+                        a = a + b;
+                        b = a - b;
+                        a = a - b;
+                    }
+                    str = Integer.toString(a) + " - " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++) {
+                        if (i == locationOfCorrectAnswer) {
+                            answers.add(a - b);
+                        } else {
+                            incorrectAnswer = rand.nextInt(21);
+                            while (incorrectAnswer == a - b) {
+                                incorrectAnswer = rand.nextInt(21);
+
+                            }
+                            answers.add(incorrectAnswer);
+                        }
+                    }
+                }
+                else if (choice == 3)
+                {
+                    int x = a*b;
+
+
+                    str = Integer.toString(x) + " / " + Integer.toString(b);
+                    sum.setText(str);
+                    locationOfCorrectAnswer = rand.nextInt(4);
+                    int incorrectAnswer;
+                    answers.clear();
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (i == locationOfCorrectAnswer)
+                        {
+                            answers.add(a);
+                        } else {
+                            incorrectAnswer = rand.nextInt(a + 11) + a - 3;
+                            while (incorrectAnswer == a) {
+                                incorrectAnswer = rand.nextInt(a + 11) + a - 3;
+
+                            }
+                            answers.add(incorrectAnswer);
+                        }
+                    }
+                }
+                str = Integer.toString(answers.get(0));
+                button1.setText(str);
+                str = Integer.toString(answers.get(1));
+                button2.setText(str);
+                str = Integer.toString(answers.get(2));
+                button3.setText(str);
+                str = Integer.toString(answers.get(3));
+                button4.setText(str);
+
+
+                break;
             }
         }
-        str=Integer.toString(answers.get(0));
-        button1.setText(str);
-        str=Integer.toString(answers.get(1));
-        button2.setText(str);
-        str=Integer.toString(answers.get(2));
-        button3.setText(str);
-        str=Integer.toString(answers.get(3));
-        button4.setText(str);
-
-
-
     }
     public void playAgain(View view){
         playAgainButton.setVisibility(View.INVISIBLE);
@@ -157,17 +396,17 @@ public class BrainBuzz extends AppCompatActivity {
         int time = 0;
         switch (difficulty) {
             case DIFFICULTY_EASY:
+                timer.setText("45s");
+                time = 45100;
+                break;
+            case DIFFICULTY_MEDIUM:
                 timer.setText("60s");
                 time = 60100;
                 break;
-            case DIFFICULTY_MEDIUM:
-                timer.setText("40s");
-                time = 40100;
-                break;
             case DIFFICULTY_HARD:
 
-                timer.setText("25s");
-                time = 25100;
+                timer.setText("120s");
+                time = 120100;
                 break;
         }
         numberOfQuestions = 0;
@@ -192,7 +431,7 @@ public class BrainBuzz extends AppCompatActivity {
                 playAgainButton.setVisibility(View.VISIBLE);
                 timer.setText("0s");
                 String string="Your score:"+ Integer.toString(score)+ "/" + Integer.toString(numberOfQuestions);
-                updatedata(difficulty,score,numberOfQuestions);
+          //      updatedata(difficulty,score,numberOfQuestions);
                 result.setText(string);
                 button1.setEnabled(false);
                 button2.setEnabled(false);
@@ -336,6 +575,10 @@ public class BrainBuzz extends AppCompatActivity {
         playAgainButton= findViewById(R.id.playAgainButton);
         gameRelativeLayout= findViewById(R.id.gameRelativeLayout);
         spinnerDifficulty=findViewById(R.id.difficulty);
+        //intent
+        Bundle bundle = getIntent().getExtras();
+        assert bundle != null;
+        message = bundle.getString("message");
         //firestore
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();

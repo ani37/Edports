@@ -1,14 +1,12 @@
 package com.example.aniketagarwalla.task1;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,38 +21,33 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.google.firebase.auth.FirebaseAuth.getInstance;
 
-public class Main extends AppCompatActivity
-{
+public class e extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     FirebaseAuth mAuth;
     TextView Nam,Email;
-    Button practice,skills;
     CircleImageView civ_profile;
     GoogleSignInClient mGoogleSignInClient;
     GoogleSignInOptions gso;
-    RecyclerView mRecyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
-    RecyclerView.Adapter mAdapter;
     DrawerLayout drawerLayout;
-    ArrayList<String> alName;
-    ArrayList<Integer> alImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_e);
+        Button beg = findViewById(R.id.beg);
+        Button amateur = findViewById(R.id.amateur);
+        Button expert = findViewById(R.id.expert);
+        //drawer
         drawerLayout = findViewById(R.id.drawer);
         mToggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-       Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         //auth
         mAuth = getInstance();
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
@@ -70,26 +63,27 @@ public class Main extends AppCompatActivity
                         // close drawer when item is tapped
                         int id = menuItem.getItemId();
                         Log.d("id", String.valueOf(id));
-                       drawerLayout.closeDrawers();
+                        drawerLayout.closeDrawers();
                         if (id == R.id.Logout)
                         {
                             logout();
+
                             return true;
                         }
                         if (id == R.id.dashboard)
                         {
-                            Intent intent = new Intent(Main.this, dashboard.class);
+                            Intent intent = new Intent(e.this, dashboard.class);
                             startActivity(intent);
                             return true;
                         }
                         if (id == R.id.settings)
                         {
-                            Toast.makeText(Main.this, "To be updated", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(e.this, "To be updated", Toast.LENGTH_SHORT).show();
                             return true;
                         }
                         if (id == R.id.calculator)
                         {
-                            Intent intent = new Intent(Main.this, Cal.class);
+                            Intent intent = new Intent(e.this, Cal.class);
                             startActivity(intent);
                             return true;
                         }
@@ -113,24 +107,33 @@ public class Main extends AppCompatActivity
 
 
         }
+        //act
 
-         practice = findViewById(R.id.practice);
-        practice.setOnClickListener(new View.OnClickListener() {
+        beg.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main.this, d.class);
+                Intent intent = new Intent(e.this, BrainBuzz.class);
+                intent.putExtra("message", "beginer");
                 startActivity(intent);
             }
         });
-         skills = findViewById(R.id.skills);
-        skills.setOnClickListener(new View.OnClickListener() {
+        amateur.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main.this, e.class);
+                Intent intent = new Intent(e.this, BrainBuzz.class);
+                intent.putExtra("message", "amateur");
                 startActivity(intent);
             }
         });
-
+        expert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(e.this, BrainBuzz.class);
+                intent.putExtra("message", "expert");
+                startActivity(intent);
+            }
+        });
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -143,10 +146,9 @@ public class Main extends AppCompatActivity
     }
     private void logout() {
         getInstance().signOut();
-        Intent intent = new Intent(Main.this, Login.class);
+        Intent intent = new Intent(e.this, Login.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }
-
 }

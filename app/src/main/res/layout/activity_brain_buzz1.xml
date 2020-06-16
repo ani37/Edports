@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BrainBuzz1">
+
+    tools:context=".PracticeBrainBuzz">
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/gameRelativeLayout"
         android:layout_width="match_parent"
@@ -34,7 +36,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="8dp"
+
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/timer"
@@ -57,7 +62,7 @@
                 android:layout_weight="1"
                 android:background="#FDEEF4"
                 android:gravity="center"
-                android:text="31 * 12"
+                android:text="31+12"
 
                 android:textColor="@android:color/black"
                 android:textSize="30sp"
@@ -150,7 +155,8 @@
                 android:onClick="chooseAnswer"
                 android:tag="3"
                 android:text="3"
-                android:textSize="80sp" />
+                android:textSize="80sp"
+                tools:targetApi="lollipop" />
         </GridLayout>
 
         <TextView
@@ -183,18 +189,40 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/gameRelativeLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="145dp"
+        android:layout_marginEnd="110dp"
+        android:background="#696969"
+        android:layout_marginBottom="423dp"
+        android:gravity="center"
+        android:textAllCaps="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="163dp"
+        android:theme="@style/Spinner"/>
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:backgroundTint="#0080ff"
+        android:background="@color/colorPrimary"
         android:fontFamily="cursive"
         android:gravity="center"
         android:onClick="start"
         android:padding="40dp"
         android:text="GO!"
+        android:textColor="@color/white"
         android:textSize="80sp"
         android:visibility="visible"
 
@@ -204,4 +232,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

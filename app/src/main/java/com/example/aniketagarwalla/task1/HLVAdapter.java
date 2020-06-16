@@ -46,20 +46,10 @@ public class HLVAdapter extends RecyclerView.Adapter<HLVAdapter.ViewHolder> {
 
                     Toast.makeText(context, "Tap to start " + alName.get(position), Toast.LENGTH_SHORT).show();
                 } else {
-                    if(position==3)
-                    {
-                        Toast.makeText(context, "Starting GuessNum!", Toast.LENGTH_SHORT).show();
-                        context.startActivity(new Intent(context, GuessNum.class));
-                    }
-                    else if(position==1)
+                    if(position==1)
                     {
                         Toast.makeText(context, "Starting BrainBuzz", Toast.LENGTH_SHORT).show();
                         context.startActivity(new Intent(context, BrainBuzz.class));
-                    }
-                    else if(position==4)
-                    {
-                        Toast.makeText(context, "Starting ARpuzz", Toast.LENGTH_SHORT).show();
-                        context.startActivity(new Intent(context, ARpuzz.class));
                     }
                     else if(position==0)
                     {

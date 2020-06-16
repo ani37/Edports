@@ -186,7 +186,7 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <Spinner
+    <android.support.v7.widget.AppCompatSpinner
         android:id="@+id/difficulty"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
@@ -197,14 +197,15 @@
         android:layout_marginStart="111dp"
         android:layout_marginTop="145dp"
         android:layout_marginEnd="110dp"
+        android:background="#696969"
         android:layout_marginBottom="423dp"
-        android:background="@color/colorAccent"
         android:gravity="center"
         android:textAllCaps="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="163dp" />
+        tools:layout_editor_absoluteY="163dp"
+        android:theme="@style/Spinner"/>
 
     <Button
         android:id="@+id/button"
@@ -212,12 +213,13 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:fontFamily="cursive"
         android:gravity="center"
         android:onClick="start"
         android:padding="40dp"
         android:text="GO!"
+        android:textColor="@color/white"
         android:textSize="80sp"
         android:visibility="visible"
 
